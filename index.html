@@ -198,7 +198,35 @@
                     document.getElementById('suhu').innerHTML = suhu + ' <span style="font-size:25px;">°C</span>';
                     document.getElementById('kelembaban').innerHTML = kelembaban +
                         ' <span style="font-size:25px;">%rh</span>';
+// Menginisialisasi kondisi untuk normal
+              var suhuNormal = suhu >= 20 && suhu <= 40;
+              var kelembabanNormal = kelembaban >= 40 && kelembaban <= 70;
 
+              // Logika untuk alert
+              var alertSection = document.getElementById("alert-section");
+              var alertText = alertSection.querySelector("h3");
+
+              if (!suhuNormal && !kelembabanNormal) {
+                alertSection.style.display = "block";
+                alertSection.classList.remove("normal");
+                alertSection.classList.add("alert");
+                alertText.innerHTML = "Suhu & Kelembaban tidak normal!";
+              } else if (!suhuNormal) {
+                alertSection.style.display = "block";
+                alertSection.classList.remove("normal");
+                alertSection.classList.add("alert");
+                alertText.innerHTML = "Suhu tidak normal!";
+              } else if (!kelembabanNormal) {
+                alertSection.style.display = "block";
+                alertSection.classList.remove("normal");
+                alertSection.classList.add("alert");
+                alertText.innerHTML = "Kelembaban tidak normal!";
+              } else {
+                alertSection.style.display = "block";
+                alertSection.classList.remove("alert");
+                alertSection.classList.add("normal");
+                alertText.innerHTML = "Suhu dan kelembaban normal";
+              }
                     // Update table with all data
                     var tableBody = document.getElementById('data-table-body');
                     tableBody.innerHTML = '';
