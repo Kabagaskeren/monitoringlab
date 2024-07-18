@@ -19,8 +19,14 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
-
+    .sticky-footer-table tfoot {
+        position: sticky;
+        bottom: 0;
+        background-color: #f2f2f2;
+        z-index: 1;
+    }
     </style>
+
 </head>
 
 <body>
@@ -88,25 +94,36 @@
                         <div class="grid-item">
                             <h6>Suhu</h6>
                             <h1 id="suhu">Loading... <span style="font-size:25px;">°C</span></h1>
+                            <p>Rata-Rata Suhu:</p>
+                            <h4 id="average-suhu">span style="font-size:25px;">°C</span>Loading... </h4>
                         </div>
+
                         <div class="grid-item">
                             <h6>Kelembaban</h6>
                             <h1 id="kelembaban">Loading... <span style="font-size:25px;">%rh</span></h1>
+                            <p>Rata-Rata Kelembaban:</p>
+                            <h4 id="average-kelembaban">Loading... <span style="font-size:25px;">°C</span></h4>
+
                         </div>
+
                     </div>
+
+
                     <div class="section-heading2" id="alert-section">
                         <div class="line-dec"></div>
                         <h3>Alert!</h3>
                     </div>
+
                 </div>
+
             </div>
         </div>
-    </div>
-    <!-- ***** Main Banner Area End ***** -->
 
-    <!-- ***** Data Table Start ***** -->
-    <div class="container-table">
-        <div class="row">
+        <!-- ***** Main Banner Area End ***** -->
+
+        <!-- ***** Data Table Start ***** -->
+
+        <div class="row" style="margin-top:100px">
             <div class="col-lg-12">
                 <h3>Data Tabel</h3>
                 <div class="table-container">
@@ -117,11 +134,11 @@
                                 <th scope="col">Suhu (°C)</th>
                                 <th scope="col">Kelembaban (%rh)</th>
                             </tr>
+
                         </thead>
                         <tbody id="data-table-body">
                             <!-- Data will be inserted here -->
                         </tbody>
-
                     </table>
 
                 </div>
@@ -151,12 +168,23 @@
                 <div class="col-lg-8">
                     <div class="section-heading">
                         <div class="line-dec"></div>
-                        <h2><a href="https://bbmkg4.com/" style="color:white;">Balai Besar Meteorologi Klimatologi Dan
+                        <h2><a href="https://bbmkg4.com/" style="color:white;">Balai Besar Meteorologi Klimatologi
+                                Dan
                                 Geofisika Wilayah IV</a></h2>
                     </div>
                 </div>
                 <div class="col-lg-4">
-
+                    <div class="table-container">
+                        <table class="table table-striped sticky-footer-table">
+                            <tfoot>
+                                <tr>
+                                    <td><strong>Rata-rata:</strong></td>
+                                    <td id="average-suhu"></td>
+                                    <td id="average-kelembaban"></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -166,6 +194,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
+                    <p id="footer-average">Rata-rata Suhu: <span id="footer-suhu">-</span> °C, Rata-rata Kelembaban:
+                        <span id="footer-kelembaban">-</span> %rh
+                    </p>
                     <p>Copyright © 2024 <a href="#">Kabagas Keren</a> . All rights reserved.</p>
                 </div>
             </div>
@@ -195,12 +226,16 @@
                     var latestFeed = feeds[0];
                     var suhu = parseFloat(latestFeed.field1) || 0;
                     var kelembaban = parseFloat(latestFeed.field2) || 0;
-                    document.getElementById('suhu').innerHTML = suhu + ' <span style="font-size:25px;">°C</span>';
+                    document.getElementById('suhu').innerHTML = suhu +
+                        ' <span style="font-size:25px;">°C</span>';
                     document.getElementById('kelembaban').innerHTML = kelembaban +
                         ' <span style="font-size:25px;">%rh</span>';
 
-                    // Update table with all data
+                    // Update table with all data and calculate averages
                     var tableBody = document.getElementById('data-table-body');
+                    var averageSuhu = 0;
+                    var averageKelembaban = 0;
+
                     tableBody.innerHTML = '';
                     feeds.forEach(feed => {
                         var row = document.createElement('tr');
@@ -217,7 +252,21 @@
                         row.appendChild(kelembabanCell);
 
                         tableBody.appendChild(row);
+
+                        // Sum for averages
+                        averageSuhu += parseFloat(feed.field1) || 0;
+                        averageKelembaban += parseFloat(feed.field2) || 0;
                     });
+
+                    // Calculate and display averages
+                    averageSuhu = (averageSuhu / feeds.length).toFixed(2);
+                    averageKelembaban = (averageKelembaban / feeds.length).toFixed(2);
+
+                    document.getElementById('average-suhu').textContent = averageSuhu;
+                    document.getElementById('average-kelembaban').textContent = averageKelembaban;
+                    document.getElementById('footer-suhu').textContent = averageSuhu;
+                    document.getElementById('footer-kelembaban').textContent = averageKelembaban;
+
                     // Menginisialisasi kondisi untuk normal
                     var suhuNormal = suhu >= 20 && suhu <= 40;
                     var kelembabanNormal = kelembaban >= 40 && kelembaban <= 70;
