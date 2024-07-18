@@ -819,6 +819,7 @@ Banner Style
   padding-top: 150px;
   padding-bottom: 150px;
   background-color: #2a2a2a;
+  text-align: center;
 }
 
 .main-banner h6 {
@@ -1172,6 +1173,7 @@ Create NFT Style
   text-align: center;
   font-family: Montserrat;
 }
+
 .table-container {
   max-width: 70%;
   max-height: 300px;
@@ -1187,6 +1189,12 @@ Create NFT Style
   margin-top: 20px;
   margin-bottom: 50px;
   border-radius: 10px;
+}
+tfoot .sticky-footer-table {
+  position: sticky;
+  bottom: 0;
+  background-color: #f8f9fa;
+  z-index: 1; /* Pastikan z-index cukup tinggi jika diperlukan */
 }
 @media (max-width: 768px) {
   .table-container {
