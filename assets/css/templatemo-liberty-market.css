@@ -2158,6 +2158,7 @@ body {
     width: 100%;
     padding-bottom: 56.25%; /* 16:9 aspect ratio */
     overflow: hidden;
+  padding: 20px;
 }
 
 .responsive-iframe iframe {
