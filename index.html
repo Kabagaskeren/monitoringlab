@@ -96,7 +96,45 @@
       </div>
     </div>
     <!-- ***** Main Banner Area End ***** -->
+<div class="container-table">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Data Tabel</h3>
+                <div class="table-container">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Timestamp</th>
+                                <th scope="col">Suhu (°C)</th>
+                                <th scope="col">Kelembaban (%rh)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="data-table-body">
+                            <!-- Data will be inserted here -->
+                        </tbody>
 
+                    </table>
+
+                </div>
+                <div class="main-button">
+                    <a href="#" id="download-csv">Download .csv Data</a>
+                </div>
+
+                <div class="iframe">
+                    <h3 style="margin-bottom: 20px;">Data Grafik</h3>
+
+                    <iframe width="450" height="260" style="border: 1px solid #cccccc;border-radius:20px;"
+                        src="https://thingspeak.com/channels/2598293/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Suhu&type=line"></iframe>
+                    <iframe width="450" height="260" style="border: 1px solid #cccccc;border-radius:20px;"
+                        src="https://thingspeak.com/channels/2598293/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Kelembaban&type=line"></iframe>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ***** Data Table End ***** -->
     <div class="create-nft">
       <div class="container">
         <div class="row">
