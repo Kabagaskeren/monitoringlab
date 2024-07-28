@@ -7,9 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet">
-    <title>Monitoring Website</title>
+    <title>Monitoring Website - BBMKG IV Makassar</title>
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="assets/images/logo.png" type="image/icon type">
+
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="assets/css/fontawesome.css">
     <link rel="stylesheet" href="assets/css/templatemo-liberty-market.css">
@@ -142,14 +144,13 @@
                     </table>
 
                 </div>
-                <div class="main-button">
-                    <a href="#" id="download-csv">Download .csv Data</a>
-                </div>
+
 
                 <div class="iframe">
-                    <h3 style="margin-bottom: 20px;">Data Grafik</h3>
+                    <h3 style="margin-bottom: 50px;">Data Grafik</h3>
 
-                    <iframe width="450" height="260" style="border: 1px solid #cccccc;border-radius:20px;"
+                    <iframe width="450" height="260"
+                        style="border: 1px solid #cccccc;border-radius:20px; margin-right:100px"
                         src="https://thingspeak.com/channels/2598293/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Suhu&type=line"></iframe>
                     <iframe width="450" height="260" style="border: 1px solid #cccccc;border-radius:20px;"
                         src="https://thingspeak.com/channels/2598293/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Kelembaban&type=line"></iframe>
@@ -173,31 +174,18 @@
                                 Geofisika Wilayah IV</a></h2>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="table-container">
-                        <table class="table table-striped sticky-footer-table">
-                            <tfoot>
-                                <tr>
-                                    <td><strong>Rata-rata:</strong></td>
-                                    <td id="average-suhu"></td>
-                                    <td id="average-kelembaban"></td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
 
     <footer>
-        <div class="container">
+        <div class="container" style="height: 30px;">
             <div class="row">
                 <div class="col-lg-12">
-                    <p id="footer-average">Rata-rata Suhu: <span id="footer-suhu">-</span> °C, Rata-rata Kelembaban:
-                        <span id="footer-kelembaban">-</span> %rh
-                    </p>
-                    <p>Copyright © 2024 <a href="#">Kabagas Keren</a> . All rights reserved.</p>
+
+                    <p>Copyright © 2024 <a href="https://www.instagram.com/zuhrifalah/">Nur Muhamad Zuhri Falah</a> .
+                        All rights reserved.</p>
                 </div>
             </div>
         </div>
@@ -222,6 +210,9 @@
             .then(data => {
                 var feeds = data.feeds;
                 if (feeds.length > 0) {
+                    // Urutkan feeds berdasarkan timestamp, terbaru di atas
+                    feeds.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
                     // Update current values display
                     var latestFeed = feeds[0];
                     var suhu = parseFloat(latestFeed.field1) || 0;
@@ -268,8 +259,8 @@
                     document.getElementById('footer-kelembaban').textContent = averageKelembaban;
 
                     // Menginisialisasi kondisi untuk normal
-                    var suhuNormal = suhu >= 20 && suhu <= 40;
-                    var kelembabanNormal = kelembaban >= 40 && kelembaban <= 70;
+                    var suhuNormal = suhu >= 20 && suhu <= 23;
+                    var kelembabanNormal = kelembaban >= 45 && kelembaban <= 60;
 
                     // Logika untuk alert
                     var alertSection = document.getElementById("alert-section");
@@ -296,13 +287,13 @@
                         alertSection.classList.add("normal");
                         alertText.innerHTML = "Suhu dan kelembaban normal";
                     }
-
                 }
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
     }
+
 
     function downloadCSV() {
         var csvURL = 'https://api.thingspeak.com/channels/2598293/feeds.csv?api_key=PK3HOBKZL1TIAQRP';
