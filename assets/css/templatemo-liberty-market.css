@@ -235,8 +235,8 @@ body {
 .main-button a {
   font-size: 14px;
   color: #fff;
-  background-color: #7453fc;
-  border: 1px solid #7453fc;
+  background-color: #003399;
+  border: 1px solid #003399;
   padding: 12px 30px;
   display: inline-block;
   border-radius: 25px;
@@ -519,7 +519,7 @@ Header Style
 .header-area .main-nav .nav li a.active,
 .header-area .main-nav .nav li:hover a {
   color: #fff;
-  background-color: #7453fc;
+  background-color: #003399;
 }
 
 .header-area .main-nav .nav li.has-sub ul.sub-menu li:last-child a:hover,
@@ -530,7 +530,7 @@ Header Style
 .header-area .main-nav .nav li:hover a,
 .header-area .main-nav .nav li a.active {
   color: #fff;
-  background-color: #7453fc;
+  background-color: #000080;
 }
 
 .background-header .main-nav .nav li:hover a,
@@ -812,7 +812,11 @@ Banner Style
 */
 
 .main-banner {
-  background-image: url(../images/heading-bg.jpg);
+  background: 
+  linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), /* Overlay hitam dengan transparansi 50% */
+  url(../images/main-bg.jpg); /* Gambar latar belakang */
+  background-attachment: fixed;
+  background-overlay: 
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -1081,7 +1085,7 @@ Create NFT Style
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  padding: 120px 0px;
+  padding: 50px 0px;
   position: relative;
 }
 
@@ -1168,6 +1172,7 @@ Create NFT Style
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+  background-attachment: fixed;
   padding-top: 100px;
   padding-bottom: 100px;
   text-align: center;
@@ -1193,7 +1198,7 @@ Create NFT Style
 tfoot .sticky-footer-table {
   position: sticky;
   bottom: 0;
-  background-color: #f8f9fa;
+  background-color: #003399;
   z-index: 1; /* Pastikan z-index cukup tinggi jika diperlukan */
 }
 @media (max-width: 768px) {
@@ -1251,7 +1256,7 @@ tfoot .sticky-footer-table {
   padding: 30px;
   width: 40%;
   margin: 10px auto;
-  background: #7453fc;
+  background: #003399;
 }
 
 .grid-item:hover {
@@ -1271,8 +1276,7 @@ Footer Style
 */
 
 footer {
-  background: rgb(125, 90, 254);
-  background: linear-gradient(132deg, rgba(125, 90, 254, 1) 25%, rgba(160, 84, 244, 1) 100%);
+  background: #003399;
   text-align: center;
   padding: 25px 0px;
 }
@@ -1303,7 +1307,7 @@ Page Heading Style
 }
 
 .page-heading {
-  background-image: url(../images/heading-bg.jpg);
+  background-image: url(../images/main-bg.jpg);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -1534,7 +1538,7 @@ Explore Style
 
 .discover-items #search-form button:hover {
   background-color: #fff;
-  color: #7453fc;
+  color: black;
   border: 1px solid #fff;
 }
 
@@ -1613,8 +1617,7 @@ Explore Style
 .top-seller {
   background-image: url(../images/main-bg.jpg);
   background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+  background-attachment: fixed;
   padding: 120px 0px 90px 0px;
   position: relative;
 }
