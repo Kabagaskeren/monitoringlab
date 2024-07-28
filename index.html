@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/animate.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
     .sticky-footer-table tfoot {
@@ -28,7 +27,6 @@
         z-index: 1;
     }
     </style>
-
 </head>
 
 <body>
@@ -60,7 +58,7 @@
 
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li><a href="#" class="active">Home</a></li>
+                            <li><a href="index.php" class="active">Home</a></li>
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -97,67 +95,52 @@
                             <h6>Suhu</h6>
                             <h1 id="suhu">Loading... <span style="font-size:25px;">°C</span></h1>
                             <p>Rata-Rata Suhu:</p>
-                            <h4 id="average-suhu">span style="font-size:25px;">°C</span>Loading... </h4>
+                            <h4 id="average-suhu">Loading... <span style="font-size:25px;">°C</span></h4>
                         </div>
 
                         <div class="grid-item">
                             <h6>Kelembaban</h6>
                             <h1 id="kelembaban">Loading... <span style="font-size:25px;">%rh</span></h1>
                             <p>Rata-Rata Kelembaban:</p>
-                            <h4 id="average-kelembaban">Loading... <span style="font-size:25px;">°C</span></h4>
-
+                            <h4 id="average-kelembaban">Loading... <span style="font-size:25px;">%rh</span></h4>
                         </div>
-
                     </div>
 
-
-                    <div class="section-heading2" id="alert-section">
-                        <div class="line-dec"></div>
+                    <div class="alert-section" id="alert-section">
                         <h3>Alert!</h3>
                     </div>
-
                 </div>
-
             </div>
         </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
 
-        <!-- ***** Main Banner Area End ***** -->
+    <!-- ***** Data Table Start ***** -->
+    <div class="row" style="margin-top:100px">
+        <div class="col-lg-12">
+            <h3>Data Tabel</h3>
+            <div class="table-container">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Timestamp</th>
+                            <th scope="col">Suhu (°C)</th>
+                            <th scope="col">Kelembaban (%rh)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="data-table-body">
+                        <!-- Data will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
 
-        <!-- ***** Data Table Start ***** -->
-
-        <div class="row" style="margin-top:100px">
-            <div class="col-lg-12">
-                <h3>Data Tabel</h3>
-                <div class="table-container">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Timestamp</th>
-                                <th scope="col">Suhu (°C)</th>
-                                <th scope="col">Kelembaban (%rh)</th>
-                            </tr>
-
-                        </thead>
-                        <tbody id="data-table-body">
-                            <!-- Data will be inserted here -->
-                        </tbody>
-                    </table>
-
-                </div>
-
-
-                <div class="iframe">
-                    <h3 style="margin-bottom: 50px;">Data Grafik</h3>
-
-                    <iframe width="450" height="260"
-                        style="border: 1px solid #cccccc;border-radius:20px; margin-right:100px"
-                        src="https://thingspeak.com/channels/2598293/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Suhu&type=line"></iframe>
-                    <iframe width="450" height="260" style="border: 1px solid #cccccc;border-radius:20px;"
-                        src="https://thingspeak.com/channels/2598293/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Kelembaban&type=line"></iframe>
-
-
-                </div>
-
+            <div class="iframe">
+                <h3 style="margin-bottom: 50px;">Data Grafik</h3>
+                <iframe width="450" height="260"
+                    style="border: 1px solid #cccccc;border-radius:20px; margin-right:100px"
+                    src="https://thingspeak.com/channels/2598293/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Suhu&type=line"></iframe>
+                <iframe width="450" height="260" style="border: 1px solid #cccccc;border-radius:20px;"
+                    src="https://thingspeak.com/channels/2598293/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Kelembaban&type=line"></iframe>
             </div>
         </div>
     </div>
@@ -169,12 +152,10 @@
                 <div class="col-lg-8">
                     <div class="section-heading">
                         <div class="line-dec"></div>
-                        <h2><a href="https://bbmkg4.com/" style="color:white;">Balai Besar Meteorologi Klimatologi
-                                Dan
+                        <h2><a href="https://bbmkg4.com/" style="color:white;">Balai Besar Meteorologi Klimatologi Dan
                                 Geofisika Wilayah IV</a></h2>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -183,7 +164,6 @@
         <div class="container" style="height: 30px;">
             <div class="row">
                 <div class="col-lg-12">
-
                     <p>Copyright © 2024 <a href="https://www.instagram.com/zuhrifalah/">Nur Muhamad Zuhri Falah</a> .
                         All rights reserved.</p>
                 </div>
@@ -208,6 +188,7 @@
         fetch(apiURL)
             .then(response => response.json())
             .then(data => {
+                console.log(data); // Debugging output
                 var feeds = data.feeds;
                 if (feeds.length > 0) {
                     // Urutkan feeds berdasarkan timestamp, terbaru di atas
@@ -217,8 +198,7 @@
                     var latestFeed = feeds[0];
                     var suhu = parseFloat(latestFeed.field1) || 0;
                     var kelembaban = parseFloat(latestFeed.field2) || 0;
-                    document.getElementById('suhu').innerHTML = suhu +
-                        ' <span style="font-size:25px;">°C</span>';
+                    document.getElementById('suhu').innerHTML = suhu + ' <span style="font-size:25px;">°C</span>';
                     document.getElementById('kelembaban').innerHTML = kelembaban +
                         ' <span style="font-size:25px;">%rh</span>';
 
@@ -253,10 +233,8 @@
                     averageSuhu = (averageSuhu / feeds.length).toFixed(2);
                     averageKelembaban = (averageKelembaban / feeds.length).toFixed(2);
 
-                    document.getElementById('average-suhu').textContent = averageSuhu;
-                    document.getElementById('average-kelembaban').textContent = averageKelembaban;
-                    document.getElementById('footer-suhu').textContent = averageSuhu;
-                    document.getElementById('footer-kelembaban').textContent = averageKelembaban;
+                    document.getElementById('average-suhu').textContent = averageSuhu + ' °C';
+                    document.getElementById('average-kelembaban').textContent = averageKelembaban + ' %rh';
 
                     // Menginisialisasi kondisi untuk normal
                     var suhuNormal = suhu >= 20 && suhu <= 23;
@@ -294,10 +272,8 @@
             });
     }
 
-
     function downloadCSV() {
         var csvURL = 'https://api.thingspeak.com/channels/2598293/feeds.csv?api_key=PK3HOBKZL1TIAQRP';
-
         var link = document.createElement('a');
         link.href = csvURL;
         link.download = 'thingSpeakData.csv';
@@ -307,7 +283,6 @@
     }
 
     setInterval(fetchData, 15000);
-
     fetchData();
 
     document.getElementById('download-csv').addEventListener('click', function(event) {
@@ -315,7 +290,6 @@
         downloadCSV();
     });
     </script>
-
 </body>
 
 </html>
